@@ -1,0 +1,32 @@
+<section>
+    @if (isLoggedIn){
+        <p>Bienvenido {{username}}</p>
+        <img 
+            (click)="greet()" 
+            alt="photo" src="https://github.com/GabiBastias.png">
+        <app-games username="{{username}}" (addFavoriteEvent)="getFavortie($event)"/>
+
+        @if (favGame != "") {
+            <h3>Juego: {{favGame}}</h3>
+            @if (favGame === "Uncharted 4") {
+                <p>"Uncharted 4: El desenlace del ladrón" es un videojuego de acción y aventura desarrollado por Naughty Dog y lanzado en 2016. El juego sigue las aventuras de Nathan Drake, un buscador de tesoros y aventurero, mientras se embarca en una última misión para encontrar el tesoro pirata del legendario pirata Henry Avery.</p>
+            } @else if (favGame === "Dota 2") {
+                <p>"Dota 2" es un popular juego de estrategia en tiempo real (MOBA) desarrollado por Valve Corporation. En el juego, dos equipos de cinco jugadores cada uno compiten para destruir la antigua estructura del oponente, conocida como el "Anciano", ubicado en sus bases opuestas. Cada jugador controla un héroe poderoso con habilidades únicas y características distintivas.</p>
+            } @else if (favGame === "Bloodborne") {
+                <p>"Bloodborne" es un juego de acción y rol desarrollado por FromSoftware y lanzado en 2015. Ambientado en la ciudad gótica y terrorífica de Yharnam, el juego sigue al protagonista, un cazador, en su búsqueda para descubrir los oscuros secretos de la ciudad y encontrar una cura para una enfermedad misteriosa que ha afectado a sus habitantes.</p>
+            }
+        }
+
+        @defer () {
+            <app-comments />
+        } @placeholder {
+            <h2>Comentarios</h2>
+        } @loading {
+            <h2>Cargando...</h2>
+        }
+    } @else {
+        <p>¡Inicia sesión!</p>
+        <button (click)="isLoggedIn = true">Log In</button>
+    }
+</section>
+
